@@ -32,7 +32,12 @@ exports.register = async (req,res) => {
 
 
 
-        res.status(200).json({ msg: "User created successfully", user: userCreated });
+        res.status(200).json({ 
+            msg: "User created successfully", 
+            user: userCreated , 
+            token: await userCreated.generateToken() , 
+            userId:userCreated._id.toString()
+        }); // Assuming you have a method to generate a token
     } catch(error){
         console.log(error)
     }
